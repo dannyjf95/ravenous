@@ -28,8 +28,11 @@ export function Business() {
   const img = {
     height: "16.66rem",
     overflow: "hidden",
-  };
-
+  }
+  
+  //avoid compiling errors
+// img;
+// businessContainer;
   return (
     <div /**container */>
       <div className="business-image" style={{textAlign: 'center'}}>

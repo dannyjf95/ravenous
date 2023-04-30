@@ -1,0 +1,16 @@
+div
+	img
+div
+
+<>
+
+div
+	bussiness name
+	adress 	details
+	flex w/ space betweeen
+div
+
+<>
+
+div
+	
