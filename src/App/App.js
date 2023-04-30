@@ -1,7 +1,6 @@
 import React from "react";
 
-import "./App.css";
-// import { Business } from '../Business/Business';
+import styles from "./App.module.css";
 import { BusinessList } from "../BusinessList/BusinessList";
 import { SearchBar } from "../SearchBar/SearchBar";
 

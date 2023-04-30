@@ -1,10 +1,11 @@
 import React from "react";
 //import css eventually
-import { styles, businessContainer, img } from "../styles"; //temp
+import styles from "./Business.module.css";
 
 export function Business() {
-  const business = {
-    ImageSrc: "https://content.codecademy.com/programs/react/ravenous/pizza.jpg" /** */,
+  const restaurant = {
+    ImageSrc:
+      "https://content.codecademy.com/programs/react/ravenous/pizza.jpg" /** */,
     name: "MarginOtto Pizzeria" /** */,
     address: "1010 Paddington Way" /** */,
     city: "Flavortown" /** */,
@@ -15,27 +16,25 @@ export function Business() {
     reviewCount: 90 /** */,
   };
 
-
   return (
-    <div /**container */ style={businessContainer}>
-      <div className="business-image" >
-        <img src={business.ImageSrc} style={img}/>        
+    <div /**container */ className={styles.Business}>
+      <div  className={styles.businessImage}>
+        <img src={restaurant.ImageSrc} className={styles.image} />
       </div>
-      <h3>{business.name.toUpperCase()}</h3>
-      <div style={styles}>
-        <div className="business-details">
-          <p>{business.address}</p>
-          <p>{business.city} </p>
-          <p>{`${business.state} ${business.zipCode}`} </p>
-          <p>{}</p>
+      <h3>{restaurant.name.toUpperCase()}</h3>
+      <div>
+        <div className={styles.businessDetails}>
+          <p>{restaurant.address}</p>
+          <p>{restaurant.city} </p>
+          <p>{`${restaurant.state} ${restaurant.zipCode}`} </p>
         </div>
-        <div className="business-type-ratings">
-          <p>{business.category.toUpperCase()}</p>
-          <p>{`${business.rating} stars`}</p>
-          <p>{`${business.reviewCount} reviews`}</p>
-          <p>{}</p>
+        <div className={styles.businessReview}>
+          <p>{restaurant.category.toUpperCase()}</p>
+          <p>{`${restaurant.rating} stars`}</p>          
         </div>
       </div>
     </div>
   );
 }
+
+
