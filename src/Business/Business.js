@@ -1,48 +1,27 @@
 import React from "react";
 //import css eventually
+import { styles, businessContainer, img } from "../styles"; //temp
+
 export function Business() {
   const business = {
-    src: "https://content.codecademy.com/programs/react/ravenous/pizza.jpg" /** */,
+    ImageSrc: "https://content.codecademy.com/programs/react/ravenous/pizza.jpg" /** */,
     name: "MarginOtto Pizzeria" /** */,
     address: "1010 Paddington Way" /** */,
     city: "Flavortown" /** */,
     state: "NY" /** */,
     zipCode: "10101" /** */,
     category: "Italian" /** */,
-    rating: 4.5,
-    reviewCount: 90,
+    rating: 4.5 /** */,
+    reviewCount: 90 /** */,
   };
-  const styles = {
-    
-    display: "flex",
-    justifyContent: "space-around",
-    
-  };
-  const businessContainer = {
-    flexDirection: "column",
-    justifyContent: "space-between",
-    display: "flex",
-    width: "16.66rem",
-    margin: "0 0.5rem 2.3rem 0.5rem",
-  };
-  const img = {
-    height: "16.66rem",
-    overflow: "hidden",
-  }
-  
-  //avoid compiling errors
-// img;
-// businessContainer;
-  return (
-    <div /**container */>
-      <div className="business-image" style={{textAlign: 'center'}}>
-        <img
-          src={business.src}          
-        />
-        {business.name.toUpperCase()}
-      </div>
 
-      <h3></h3>
+
+  return (
+    <div /**container */ style={businessContainer}>
+      <div className="business-image" >
+        <img src={business.ImageSrc} style={img}/>        
+      </div>
+      <h3>{business.name.toUpperCase()}</h3>
       <div style={styles}>
         <div className="business-details">
           <p>{business.address}</p>
