@@ -1,13 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
+import "./App.css";
 // import { Business } from '../Business/Business';
-import { BusinessList } from '../BusinessList/BusinessList';
+import { BusinessList } from "../BusinessList/BusinessList";
+import { SearchBar } from "../SearchBar/SearchBar";
 
 function App() {
-
   return (
-    <BusinessList />
+    <div>
+      <BusinessList />
+      <SearchBar />
+    </div>
   );
 }
 
