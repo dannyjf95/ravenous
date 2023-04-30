@@ -8,14 +8,12 @@ export function SearchBar() {
   "highest rating": "rating"
  }
 
- //iterate through options
+ //iterate through options w/ object.keys().map
 const sortOptionsList = () => {
  return Object.keys(sortOptions).map((sortedOption) => (
   <li key={sortOptions[sortedOption]}>{sortedOption}</li> //list item
  ))
 }
- 
-
 
 
   return (

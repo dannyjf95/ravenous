@@ -6,7 +6,8 @@ import { SearchBar } from "../SearchBar/SearchBar";
 
 function App() {
   return (
-    <div>
+    <div className={styles.App}>
+      <h1>ravenous</h1>
       <BusinessList />
       <SearchBar />
     </div>

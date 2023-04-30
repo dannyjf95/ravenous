@@ -19,7 +19,7 @@ export function Business() {
   return (
     <div /**container */ className={styles.Business}>
       <div  className={styles.businessImage}>
-        <img src={restaurant.ImageSrc} className={styles.image} />
+        <img src={restaurant.ImageSrc} className={styles.image} alt=""/>
       </div>
       <h3>{restaurant.name.toUpperCase()}</h3>
       <div>
