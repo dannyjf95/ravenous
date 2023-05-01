@@ -1,14 +1,18 @@
 import React from "react";
 import { Business } from "../Business/Business";
-import styles from './BusinessList.module.css'
+import styles from "./BusinessList.module.css";
 export function BusinessList() {
- //map later instead of manually inserting instances
+  //map later instead of manually inserting instances
   return (
-    <div className={styles.BusinessList}>
+    <div className={styles.BusinessListContainer}>
       <Business />
       <Business />
       <Business />
       <Business />
+      <Business />
+      <Business />
+      
+      
     </div>
   );
 }

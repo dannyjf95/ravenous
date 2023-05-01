@@ -8,8 +8,8 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>ravenous</h1>
-      <BusinessList />
       <SearchBar />
+      <BusinessList />      
     </div>
   );
 }

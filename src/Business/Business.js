@@ -17,24 +17,30 @@ export function Business() {
   };
 
   return (
-    <div /**container */ className={styles.Business}>
-      <div  className={styles.businessImage}>
-        <img src={restaurant.ImageSrc} className={styles.image} alt=""/>
+    <div /**container */ className={styles.BusinessContainer}>
+      <div className={styles.businessImageContainer}>
+        <img
+          src={restaurant.ImageSrc}
+          className={styles.BusinessImage}
+          alt=""
+        />
       </div>
-      <h3>{restaurant.name.toUpperCase()}</h3>
-      <div>
+      <h3 className={styles.busName}>{restaurant.name.toUpperCase()}</h3>
+      <hr />
+      <div className={styles.businessInfoContainer}>
         <div className={styles.businessDetails}>
           <p>{restaurant.address}</p>
           <p>{restaurant.city} </p>
           <p>{`${restaurant.state} ${restaurant.zipCode}`} </p>
         </div>
+
+        <div className="vertical-line"></div>
         <div className={styles.businessReview}>
-          <p>{restaurant.category.toUpperCase()}</p>
-          <p>{`${restaurant.rating} stars`}</p>          
+          <h3>{restaurant.category.toUpperCase()}</h3>
+          <h4>{`${restaurant.rating}/5 stars`}</h4>
         </div>
+        <hr />
       </div>
     </div>
   );
 }
-
-

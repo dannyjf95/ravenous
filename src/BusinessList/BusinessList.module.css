@@ -1,6 +1,32 @@
-.BusinessList{
- display: flex;
- justify-content: space-around;
- flex-wrap: wrap;
- margin: 5rem
+.BusinessListContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 8rem;
+  
+}
+
+
+
+
+ 
+@media only screen and (max-width: 768px) {
+  .BusinessListContainer {
+   background-color: rgba(5, 18, 29, 0.559);
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 0%;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 1611px) {
+ .BusinessListContainer {
+  
+   width: 100%;
+   margin: 0 auto;
+   border-radius: 0%;
+   flex-wrap: wrap;
+   justify-content: center;
+ }
 }

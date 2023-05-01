@@ -1,15 +1,63 @@
-.Business {
+.BusinessContainer {
+  flex-direction: column;
+  padding: 1rem;
+  
+}
+hr {
+ color: rgba(250, 249, 250, 0);
+}
+.busName {
+  text-align: center;
+  margin: 5px;
+  color: bisque;
 }
 
-.businessImage {
+.businessImageContainer {
+  overflow: hidden;
+  border-radius: 1.5rem;
 }
 
-.BusinessImage image {
- 
+.BusinessImage {
+  width: 100%;
+  object-fit: cover;
+  height: 13rem;
+  object-position: 25% 70%;
+}
+
+.businessInfoContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .businessDetails {
+ color: #ffe4c4;
+  padding-right: 10px;
 }
 
-.businessReveiew {
+.businessReview {
+  color: gold;
+  padding-left: 10px;
+  
+}
+
+/* .vertical-line {
+ border-left: 1px solid black;
+ height: 100%;
+ margin: 0 10px;
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ left: 50%;
+ transform: translateX(-50%);
+} */
+
+
+
+@media only screen and (max-width: 768px) {
+ .BusinessContainer {
+  width: 100%;
+ }
+ .businessInfoContainer {
+  justify-content: space-evenly;
+ }
 }
