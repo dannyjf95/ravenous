@@ -15,6 +15,7 @@ export function SearchBar() {
   //iterate through options w/ object.keys().map
   const sortOptionsList = () => {
     return Object.keys(sortOptions).map((sortedOption) => (
+      /**new sortOptions array[sortedOptions] is used  */
       <li key={sortOptions[sortedOption]}>{sortedOption}</li> //list item
     ));
   };

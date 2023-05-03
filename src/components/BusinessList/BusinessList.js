@@ -9,5 +9,7 @@ export function BusinessList({ businessesData }) {
     <Business key={businessData.id} businessDataObject={businessData} />
   ));
 
-  return <div className={styles.BusinessListContainer}>{mappedBusinessData}</div>;
+  return (
+    <div className={styles.BusinessListContainer}>{mappedBusinessData}</div>
+  );
 }

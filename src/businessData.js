@@ -38,4 +38,43 @@ export const businessData = [
     reviewCount: 90,
     id: 3,
   },
+  {
+    ImageSrc:
+      "https://content.codecademy.com/programs/react/ravenous/pizza.jpg",
+    name: "MarginOtto Pizzeria3",
+    address: "1010 Paddington Way",
+    city: "Flavortown",
+    state: "NY",
+    zipCode: "10101",
+    category: "Italian",
+    rating: 4.5,
+    reviewCount: 90,
+    id: 4,
+  },
+  {
+    ImageSrc:
+      "https://content.codecademy.com/programs/react/ravenous/pizza.jpg",
+    name: "MarginOtto Pizzeria3",
+    address: "1010 Paddington Way",
+    city: "Flavortown",
+    state: "NY",
+    zipCode: "10101",
+    category: "Italian",
+    rating: 4.5,
+    reviewCount: 90,
+    id: 5,
+  },
+  {
+    ImageSrc:
+      "https://content.codecademy.com/programs/react/ravenous/pizza.jpg",
+    name: "MarginOtto Pizzeria3",
+    address: "1010 Paddington Way",
+    city: "Flavortown",
+    state: "NY",
+    zipCode: "10101",
+    category: "Italian",
+    rating: 4.5,
+    reviewCount: 90,
+    id: 6,
+  },
 ];
