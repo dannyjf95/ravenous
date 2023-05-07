@@ -25,7 +25,6 @@ export function SearchBar() {
 
   /** HANDLERS */
 
-
   /** search term changes */
   const handleSearchTerm = ({ target }) => {
     setSearchTermState(target.value);
@@ -50,15 +49,17 @@ export function SearchBar() {
      with styling for selected li(called by sortByStyles & CSS)
      onClick handles the clicking and setSortBy'ing
   */
- /**onClick={() => {
-          sortBySelectedStyling(sortedOption);
-        }} */
+
   const sortOptionsList = () => {
     return Object.keys(sortByOptions).map((sortedOption) => (
       <li
         className={sortByStyles(sortedOption)}
         key={sortByOptions[sortedOption]}
-        onClick={() => {sortBySelectedStyling(sortedOption)}}
+        onClick={(e) => {
+          sortBySelectedStyling(sortedOption);
+          e.preventDefault();
+          console.log("Clicked option: ", sortedOption);
+        }}
       >
         {sortedOption}
       </li>
