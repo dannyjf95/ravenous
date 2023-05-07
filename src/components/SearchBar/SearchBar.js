@@ -1,44 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./SearchBar.module.css"; //modules file
 import searchIcon from "./searchIcon.svg";
 
-
-
 export function SearchBar() {
-  //create a JavaScript object to contain the key-value pairs for each sorting option
-  const sortOptions = {
-    "Highly Rated Restaurants": "rating",
-    // "highest rating": "rating",
-    // "highest rating": "rating",
+  //state
+  const [searchTermState, setSearchTermState] = useState("");
+  const [locationState, setLocation] = useState("");
+  const [sortByState, setSortBy] = useState("best_match");
+
+  // yelp API sort_by inputs key/value
+  const sortByOptions = {
+    "Best Match": "best_match",
+    "Highly Rated": "rating",
   };
 
-  //iterate through options w/ object.keys().map
+  /**styling for rendered li items that get selected */
+  const sortByStyles = (sortBySelected) => {
+    return sortByState === sortBySelected ? styles.active : null;
+  };
+  /**setState to option clicked(sortByStyles) with clickEvent */
+  const sortBySelectedStyling = (clickedOption) => {
+    setSortBy(clickedOption);
+  };
+
+  /** HANDLERS */
+
+
+  /** search term changes */
+  const handleSearchTerm = ({ target }) => {
+    setSearchTermState(target.value);
+  };
+
+  /**location input changes */
+  const handleLocationChange = ({ target }) => {
+    setLocation(target.value);
+  };
+  const exampleMessage = (event) => {
+    event.preventDefault();
+    apiCall(searchTermState, locationState, sortByState);
+  };
+  /**simulated search functionality */
+  const apiCall = (searchTermState, locationState, sortByState) => {
+    console.log(
+      `searching yelp API for ${searchTermState}, in ${locationState}, ${sortByState}`
+    );
+  };
+
+  /**returns 2 li items mapped from sortByOptions object 
+     with styling for selected li(called by sortByStyles & CSS)
+     onClick handles the clicking and setSortBy'ing
+  */
+ /**onClick={() => {
+          sortBySelectedStyling(sortedOption);
+        }} */
   const sortOptionsList = () => {
-    return Object.keys(sortOptions).map((sortedOption) => (
-      /**new sortOptions array[sortedOptions] is used  */
-      <li key={sortOptions[sortedOption]}>{sortedOption}</li> //list item
+    return Object.keys(sortByOptions).map((sortedOption) => (
+      <li
+        className={sortByStyles(sortedOption)}
+        key={sortByOptions[sortedOption]}
+        onClick={() => {sortBySelectedStyling(sortedOption)}}
+      >
+        {sortedOption}
+      </li>
     ));
   };
 
   return (
     <div className={styles.SearchBar}>
-      <div className={styles.filteredSearch}>
-        <ul>{sortOptionsList()}</ul> {/**it will have li inserted  */}
-        <hr />
+      {/**best match & highly rated options container */}
+      <div className={styles.sortByOptions}>
+        <ul>{sortOptionsList()}</ul>
       </div>
 
-      <div className={styles.searchBarInputs}>
-        <input placeholder="Search food" className={styles.search} />
-        {/** knife and fork favi */}
+      <form onSubmit={exampleMessage}>
+        <div className={styles.searchBarInputs}>
+          <input
+            onChange={handleSearchTerm}
+            type="text"
+            placeholder="Search food"
+            className={styles.search}
+          />
 
-        <input placeholder="Location" className={styles.location} />
-        {/** location marker favi */}
-        
-        <button id={styles.searchButton}>
-        <img src={searchIcon} alt="Search" />
-        </button>
-        
-      </div>
+          <input
+            onChange={handleLocationChange}
+            placeholder="LocationState"
+            className={styles.location}
+          />
+
+          <button type="submit" id={styles.searchButton}>
+            <img src={searchIcon} alt="Search" />
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

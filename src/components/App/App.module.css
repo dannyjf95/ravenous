@@ -23,11 +23,12 @@ body, html {
   color: #ffe4c4;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
   .App {
     background-color: rgba(5, 18, 29, 0.533);    
     margin: 0 auto;
     width: 80%;
+    min-width: 70%;
     font-size: 0.8rem;
     
   }
