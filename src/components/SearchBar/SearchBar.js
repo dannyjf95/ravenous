@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css"; //modules file
 import searchIcon from "./searchIcon.svg";
+import { yelpApi } from "../../utils/Yelp";
 
 export function SearchBar() {
   //state
   const [searchTermState, setSearchTermState] = useState("");
-  const [locationState, setLocation] = useState("");
-  const [sortByState, setSortBy] = useState("best_match");
+  const [locationState, setLocationState] = useState("");
+  const [sortByState, setSortByState] = useState("best_match");
 
   // yelp API sort_by inputs key/value
   const sortByOptions = {
@@ -15,12 +16,12 @@ export function SearchBar() {
   };
 
   /**styling for rendered li items that get selected */
-  const sortByStyles = (sortBySelected) => {
-    return sortByState === sortBySelected ? styles.active : null;
+  const sortByStyles = (clickedOption) => {
+    return sortByState === clickedOption ? styles.active : null;
   };
   /**setState to option clicked(sortByStyles) with clickEvent */
   const sortBySelectedStyling = (clickedOption) => {
-    setSortBy(clickedOption);
+    setSortByState(clickedOption);
   };
 
   /** HANDLERS */
@@ -32,12 +33,17 @@ export function SearchBar() {
 
   /**location input changes */
   const handleLocationChange = ({ target }) => {
-    setLocation(target.value);
+    setLocationState(target.value);
   };
-  const exampleMessage = (event) => {
+
+   const exampleMessage = (event) => {
     event.preventDefault();
     apiCall(searchTermState, locationState, sortByState);
+    
   };
+  
+
+
   /**simulated search functionality */
   const apiCall = (searchTermState, locationState, sortByState) => {
     console.log(
@@ -47,21 +53,21 @@ export function SearchBar() {
 
   /**returns 2 li items mapped from sortByOptions object 
      with styling for selected li(called by sortByStyles & CSS)
-     onClick handles the clicking and setSortBy'ing
+     onClick handles the clicking and setSortByState'ing
   */
 
   const sortOptionsList = () => {
-    return Object.keys(sortByOptions).map((sortedOption) => (
+    return Object.keys(sortByOptions).map((sortByChoice) => (
       <li
-        className={sortByStyles(sortedOption)}
-        key={sortByOptions[sortedOption]}
+        className={sortByStyles(sortByChoice)}
+        key={sortByOptions[sortByChoice]}
         onClick={(e) => {
-          sortBySelectedStyling(sortedOption);
+          sortBySelectedStyling(sortByChoice);
           e.preventDefault();
-          console.log("Clicked option: ", sortedOption);
+          console.log("Clicked option: ", sortByChoice);
         }}
       >
-        {sortedOption}
+        {sortByChoice}
       </li>
     ));
   };
@@ -77,7 +83,6 @@ export function SearchBar() {
         <div className={styles.searchBarInputs}>
           <input
             onChange={handleSearchTerm}
-            type="text"
             placeholder="Search food"
             className={styles.search}
           />

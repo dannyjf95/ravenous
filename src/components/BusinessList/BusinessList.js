@@ -1,12 +1,11 @@
 import React from "react";
-import { Business } from "../Business/Business";
 import styles from "./BusinessList.module.css";
+import { Business } from "../Business/Business";
 export function BusinessList({ businessesData }) {
-  //map later instead of manually inserting instances
   //pass down businessesData(prop) object with individual id for each business
 
-  const mappedBusinessData = businessesData.map((businessData) => (
-    <Business key={businessData.id} businessDataObject={businessData} />
+  const mappedBusinessData = businessesData.map((businessDataObject) => (
+    <Business key={businessDataObject.id} businessDataObject={businessDataObject} />
   ));
 
   return (
