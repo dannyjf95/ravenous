@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./App.module.css";
 import { BusinessList } from "../BusinessList/BusinessList";
-import { SearchBar } from "../SearchBar/SearchBar";
+import { SearchBar } from "../../SearchBarContainer/SearchBar/SearchBar";
 
 import Yelp from "../../utils/Yelp";
 
