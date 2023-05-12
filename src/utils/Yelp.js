@@ -1,43 +1,63 @@
+//yelp api key
 const apiKey =
-  "591FdGQ65mCIqEZj1CiH8FYK8TlFE4p5QoOzNwd6q1QgzV75pZVjzwZRXSq-NxAJdY5vD6Lc8Wv8TU39QZZZe9rweZvlwHLbx6hy7_H1BlfHxsGuPK_sNtRsL_NbZHYx";
-const yelpBaseUrl =
-  "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search";
+  "4njiSx-asXAWOw0q4nZtQxTRuwvtuOqZ-E0-ZLJYmMRUx9iwEwFAgZXD5L20o5sK0ZSBPeNC5ZnE7gp19N8no6qwkjnQmDcrwHk6pcI7pwb4N8LOL7IzSocF7FddZHYx";
 
-export const yelpApi = async (searchTermState, locationState, sortByState) => {
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `bearer ${apiKey}`,
-    },
-  };
-  const searchEndpoint = `?term=${searchTermState}&location=${locationState}&sort_by=${sortByState}`;
-  const requestParams = `api_key=${apiKey}`;
-  const urlToFetch = `${yelpBaseUrl}${searchEndpoint}${requestParams}`;
+const Yelp = {
+  async searchYelp(searchTerm, location, sortBy) {
+    const options = {
+      method: "GET",
+      accept: "application/json",
+      headers: {
+        Authorization: `bearer ${apiKey}`,
+      },
+    };
 
-  try {
-    const response = await fetch(urlToFetch, options);
-    if (response.ok) {
-      const jsonResponse = await response.json();
-
-      if (jsonResponse.businesses) {
-        return jsonResponse.businesses.map((business) => ({
-          id: business.id,
-          imageSrc: business.image_url,
-          name: business.name,
-          address: business.location.address1,
-          city: business.location.city,
-          state: business.location.state,
-          zipCode: business.location.zip_code,
-          category: business.categories[0].title,
-          rating: business.rating,
-          reviewCount: business.review_count,
+    try {
+      const response = await fetch(
+        `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${location}&sort_by=${sortBy}`,
+        options
+      );
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        //response is ok!
+        // console.log(response);
+        // console.log(jsonResponse);
+        return jsonResponse.businesses.map((yelpBusiness) => ({
+          id: yelpBusiness.id,
+          imgSrc: yelpBusiness.image_url,
+          name: yelpBusiness.name,
+          address: yelpBusiness.location.address1,
+          city: yelpBusiness.location.city,
+          state: yelpBusiness.location.state,
+          zipCode: yelpBusiness.location.zip_code,
+          category: yelpBusiness.categories[0].title,
+          rating: yelpBusiness.rating,
+          reviewCount: yelpBusiness.review_count,
         }));
         
       }
-    } else {
-      throw new Error("Request Failed!");
+    } catch (error) {//
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
+  },
 };
+
+//test along with console.log(jsonResponse) line23 ish
+// Yelp.searchYelp("pizza", "New York", "best_match");
+
+export default Yelp;
+
+// if (jsonResponse.businesses) {
+//   return jsonResponse.businesses.map((business) => ({
+//     id: business.id,
+//     imageSrc: business.image_url,
+//     name: business.name,
+//     address: business.location.address1,
+//     city: business.location.city,
+//     state: business.location.state,
+//     zipCode: business.location.zip_code,
+//     category: business.categories[0].title,
+//     rating: business.rating,
+//     reviewCount: business.review_count,
+//   }));
+// }`

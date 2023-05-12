@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styles from "./SearchBar.module.css"; //modules file
 import searchIcon from "./searchIcon.svg";
-import { yelpApi } from "../../utils/Yelp";
 
-export function SearchBar() {
+export function SearchBar({yelpSearchResults/**api call function */}) {
   //state
-  const [searchTermState, setSearchTermState] = useState("");
-  const [locationState, setLocationState] = useState("");
-  const [sortByState, setSortByState] = useState("best_match");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [location, setLocation] = useState("");
+  const [sortBy, setSortBy] = useState("best_match");
 
   // yelp API sort_by inputs key/value
   const sortByOptions = {
@@ -17,43 +16,38 @@ export function SearchBar() {
 
   /**styling for rendered li items that get selected */
   const sortByStyles = (clickedOption) => {
-    return sortByState === clickedOption ? styles.active : null;
+    return sortBy === clickedOption ? styles.active : null;
   };
   /**setState to option clicked(sortByStyles) with clickEvent */
   const sortBySelectedStyling = (clickedOption) => {
-    setSortByState(clickedOption);
+    setSortBy(clickedOption);
   };
 
   /** HANDLERS */
 
   /** search term changes */
   const handleSearchTerm = ({ target }) => {
-    setSearchTermState(target.value);
+    setSearchTerm(target.value);
   };
 
   /**location input changes */
   const handleLocationChange = ({ target }) => {
-    setLocationState(target.value);
+    setLocation(target.value);
   };
-
-   const exampleMessage = (event) => {
-    event.preventDefault();
-    apiCall(searchTermState, locationState, sortByState);
-    
-  };
-  
-
 
   /**simulated search functionality */
-  const apiCall = (searchTermState, locationState, sortByState) => {
-    console.log(
-      `searching yelp API for ${searchTermState}, in ${locationState}, ${sortByState}`
-    );
+  
+//actual func handleExample/handleSearch apples to be api call func passed as prop
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    yelpSearchResults(searchTerm, location, sortBy);
   };
+
+
 
   /**returns 2 li items mapped from sortByOptions object 
      with styling for selected li(called by sortByStyles & CSS)
-     onClick handles the clicking and setSortByState'ing
+     onClick handles the clicking and setSortBy'ing
   */
 
   const sortOptionsList = () => {
@@ -64,7 +58,7 @@ export function SearchBar() {
         onClick={(e) => {
           sortBySelectedStyling(sortByChoice);
           e.preventDefault();
-          console.log("Clicked option: ", sortByChoice);
+          // console.log("Clicked option: ", sortByChoice);
         }}
       >
         {sortByChoice}
@@ -79,7 +73,7 @@ export function SearchBar() {
         <ul>{sortOptionsList()}</ul>
       </div>
 
-      <form onSubmit={exampleMessage}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.searchBarInputs}>
           <input
             onChange={handleSearchTerm}
@@ -89,7 +83,7 @@ export function SearchBar() {
 
           <input
             onChange={handleLocationChange}
-            placeholder="LocationState"
+            placeholder="Location"
             className={styles.location}
           />
 
